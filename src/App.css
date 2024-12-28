@@ -1,0 +1,264 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+    --bg-color: #f4f4f4;
+    --primary-color: #4a4a4a;
+    --secondary-color: #6a5acd;
+    --correct-color: #6aaa64;
+    --present-color: #c9b458;
+    --absent-color: #787c7e;
+    --text-color: #333;
+}
+
+/* Mobile Responsiveness */
+@media screen and (max-width: 600px) {
+    body, html {
+        font-size: 14px;
+    }
+
+    .App {
+        width: 95%;
+        max-width: 100%;
+        padding: 15px;
+        margin: 0 10px;
+        border-radius: 15px;
+    }
+
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 15px;
+    }
+
+    .tile {
+        width: 50px;
+        height: 50px;
+        font-size: 2rem;
+    }
+
+    .keyboard-key {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+        margin: 0 1px;
+    }
+
+    .keyboard-row {
+        gap: 4px;
+    }
+}
+
+/* Base Styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    width: 100%;
+    background-color: var(--bg-color);
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+#root {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px 0;
+}
+
+.App {
+    width: 100%;
+    max-width: 600px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    padding: 30px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.3s ease;
+    margin: 0 20px;
+}
+
+h1 {
+    color: var(--secondary-color);
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.board {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.row {
+    display: flex;
+    gap: 10px;
+}
+
+.tile {
+    width: 60px;
+    height: 60px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: white;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.game-over {
+    text-align: center;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.game-over div {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 15px;
+}
+
+.redo-button {
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.redo-button:hover {
+    background-color: #5a4acd;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.keyboard {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.keyboard-row {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+}
+
+.keyboard-key {
+    background-color: #e0e0e0;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    color: var(--text-color);
+    padding: 10px 15px;
+    margin: 0 2px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.keyboard-key:hover {
+    background-color: #d0d0d0;
+}
+
+.keyboard-key.special {
+    background-color: var(--absent-color);
+    color: white;
+    min-width: 50px;
+}
+
+.keyboard-key.correct {
+    background-color: var(--correct-color);
+    color: white;
+}
+
+.keyboard-key.present {
+    background-color: var(--present-color);
+    color: white;
+}
+
+.keyboard-key.absent {
+    background-color: var(--absent-color);
+    color: white;
+}
+
+/* Animations */
+@keyframes flip {
+    0% { 
+        transform: rotateX(0deg);
+        background-color: white;
+    }
+    50% { 
+        transform: rotateX(90deg);
+        background-color: rgba(0,0,0,0.1);
+    }
+    100% { 
+        transform: rotateX(0deg);
+    }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.tile.flip {
+    animation: flip 0.5s ease-in-out;
+}
+
+.tile.flip.correct {
+    animation: flip 0.5s ease-in-out;
+    background-color: var(--correct-color);
+    color: white;
+}
+
+.tile.flip.present {
+    animation: flip 0.5s ease-in-out;
+    background-color: var(--present-color);
+    color: white;
+}
+
+.tile.flip.absent {
+    animation: flip 0.5s ease-in-out;
+    background-color: var(--absent-color);
+    color: white;
+}
+
+.row.shake {
+    animation: shake 0.5s ease-in-out;
+}
