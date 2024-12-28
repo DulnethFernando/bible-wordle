@@ -34,6 +34,7 @@ Bible Wordle is a faith-inspired word guessing game based on the classic Wordle,
 ```bash
 git clone https://github.com/yourusername/bible-wordle.git
 cd bible-wordle
+```
 
 2. Install dependencies
 ```bash
